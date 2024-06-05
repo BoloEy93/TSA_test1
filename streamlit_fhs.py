@@ -71,6 +71,6 @@ prediction = [1,1,0,1,0,1]
 
 if st.button('Predict'):
     if(prediction[0]==0):
-        st.write('<p class="big-font">Vous n etes probablement pas atteint d'Autisme.</p>',unsafe_allow_html=True)
+        st.write('<p class="big-font">Vous n etes probablement pas atteint d Autisme.</p>',unsafe_allow_html=True)
     else:
-        st.write('<p class="big-font">Vous etes probablement atteint d'Autisme.</p>',unsafe_allow_html=True)
+        st.write('<p class="big-font">Vous etes probablement atteint d Autisme.</p>',unsafe_allow_html=True)
