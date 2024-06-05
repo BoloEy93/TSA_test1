@@ -25,7 +25,7 @@ hyp = col2.selectbox("Si vous ou quelqu’un de votre famille est triste ou boul
 
 diabetes = col3.selectbox("Est-ce que votre enfant utilise spontanément des gestes simples de communication, comme saluer de la main?",["Plusieurs fois par jour", "Quelques fois par jours", "Quelques fois par semaine", "Moins d’une fois par semaine", "Jamais"])
 
-chol = col1.number_input("Une question1")
+chol = col1.selectbox("Est-ce que les premiers mots de votre enfant étaient :",["Très typique", "Plutôt typique", "Légèrement inhabituel", "Très inhabituel", "Mon enfant ne parle pas"])
 
 sys_bp = col2.number_input("Une question2")
 
