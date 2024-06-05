@@ -15,7 +15,7 @@ education = col3.selectbox("Est-ce que votre enfant vous regarde lorsque vous l�
 
 isSmoker = col1.selectbox("A quel point est-ce facile d’avoir un contact visuel avec votre enfant?",["Plusieurs fois par jour", "Quelques fois par jours", "Quelques fois par semaine", "Moins d’une fois par semaine", "Jamais"])
 
-#yearsSmoking = col2.number_input("Number of daily cigarettes")
+yearsSmoking = col2.number_input("Nombre ")
 
 BPMeds = col3.selectbox("Est-ce que votre enfant joue à faire semblant? (Comme jouer avec des poupées, parler dans un téléphone jouet?",["Plusieurs fois par jour", "Quelques fois par jours", "Quelques fois par semaine", "Moins d’une fois par semaine", "Jamais"])
 
@@ -25,17 +25,17 @@ hyp = col2.selectbox("Si vous ou quelqu’un de votre famille est triste ou boul
 
 diabetes = col3.selectbox("Est-ce que votre enfant utilise spontanément des gestes simples de communication, comme saluer de la main?",["Plusieurs fois par jour", "Quelques fois par jours", "Quelques fois par semaine", "Moins d’une fois par semaine", "Jamais"])
 
-chol = col1.number_input("Enter your cholesterol level")
+chol = col1.number_input("Une question")
 
-sys_bp = col2.number_input("Enter your systolic blood pressure")
+sys_bp = col2.number_input("Une question")
 
-dia_bp = col3.number_input("Enter your diastolic blood pressure")
+dia_bp = col3.number_input("Une question")
 
-bmi = col1.number_input("Enter your BMI")
+bmi = col1.number_input("Une question")
 
-heart_rate = col2.number_input("Enter your resting heart rate")
+heart_rate = col2.number_input("Une question")
 
-glucose = col3.number_input("Enter your glucose level")
+glucose = col3.number_input("Une question")
 
 df_pred = pd.DataFrame([[gender,age,education,isSmoker,yearsSmoking,BPMeds,stroke,hyp,diabetes,chol,sys_bp,dia_bp,bmi,heart_rate,glucose]],
 
