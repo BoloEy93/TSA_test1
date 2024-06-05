@@ -2,7 +2,7 @@ import streamlit as st
 import joblib
 import pandas as pd
 
-st.write("#10 Year Heart Disease Prediction")
+st.write("#TSA Prediction")
 
 gender = st.selectbox("Male ?", ["Yes", "Not"])
 col1, col2, col3 = st.columns(3)
@@ -11,7 +11,7 @@ col1, col2, col3 = st.columns(3)
 
 age = col2.number_input("Enter your age")
 
-education = col3.selectbox("Highest academic qualification",["High school diploma", "Undergraduate degree", "Postgraduate degree", "PhD"])
+education = col3.selectbox("Est-ce que votre enfant vous regarde lorsque vous l’appelez?",["Toujours", "Habituellement", "Parfois", "Rarement", "Jamais"])
 
 isSmoker = col1.selectbox("Are you currently a smoker?",["Yes","No"])
 
