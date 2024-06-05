@@ -19,11 +19,11 @@ isSmoker = col1.selectbox("A quel point est-ce facile d’avoir un contact visue
 
 BPMeds = col3.selectbox("Est-ce que votre enfant joue à faire semblant? (Comme jouer avec des poupées, parler dans un téléphone jouet?",["Plusieurs fois par jour", "Quelques fois par jours", "Quelques fois par semaine", "Moins d’une fois par semaine", "Jamais"])
 
-stroke = col1.selectbox("Est-ce que votre enfant regarde dans la direction que vous regardez??",["Plusieurs fois par jour", "Quelques fois par jours", "Quelques fois par semaine", "Moins d’une fois par semaine", "Jamais"])
+stroke = col1.selectbox("Est-ce que votre enfant regarde dans la direction que vous regardez?",["Plusieurs fois par jour", "Quelques fois par jours", "Quelques fois par semaine", "Moins d’une fois par semaine", "Jamais"])
 
-hyp = col2.selectbox("Do you have hypertension?",["Yes","No"])
+hyp = col2.selectbox("Si vous ou quelqu’un de votre famille est triste ou bouleversé, est-ce que votre enfant essaie de le réconforter??",["Plusieurs fois par jour", "Quelques fois par jours", "Quelques fois par semaine", "Moins d’une fois par semaine", "Jamais"])
 
-diabetes = col3.selectbox("Do you have diabetes?",["Yes","No"])
+diabetes = col3.selectbox("Est-ce que votre enfant utilise spontanément des gestes simples de communication, comme saluer de la main?",["Plusieurs fois par jour", "Quelques fois par jours", "Quelques fois par semaine", "Moins d’une fois par semaine", "Jamais"])
 
 chol = col1.number_input("Enter your cholesterol level")
 
