@@ -4,16 +4,16 @@ import pandas as pd
 
 st.write("#TSA Prediction")
 
-gender = st.selectbox("Male ?", ["Yes", "Not"])
+gender = st.selectbox("Garcon ?", ["Oui", "Non"])
 col1, col2, col3 = st.columns(3)
 
 # Getting user input
 
-age = col2.number_input("Enter your age")
+age = col2.number_input("Votre age")
 
 education = col3.selectbox("Est-ce que votre enfant vous regarde lorsque vous l’appelez?",["Toujours", "Habituellement", "Parfois", "Rarement", "Jamais"])
 
-isSmoker = col1.selectbox("Are you currently a smoker?",["Yes","No"])
+isSmoker = col1.selectbox("A quel point est-ce facile d’avoir un contact visuel avec votre enfant?",["Plusieurs fois par jour", "Quelques fois par jours", "Quelques fois par semaine", "Moins d’une fois par semaine", "Jamais"])
 
 yearsSmoking = col2.number_input("Number of daily cigarettes")
 
