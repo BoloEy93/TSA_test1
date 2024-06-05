@@ -2,7 +2,7 @@ import streamlit as st
 import joblib
 import pandas as pd
 
-st.write("#TSA Prediction")
+st.write("TSA Prediction")
 
 gender = st.selectbox("Garcon ?", ["Oui", "Non"])
 col1, col2, col3 = st.columns(3)
