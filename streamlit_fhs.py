@@ -25,17 +25,17 @@ hyp = col2.selectbox("Si vous ou quelqu’un de votre famille est triste ou boul
 
 diabetes = col3.selectbox("Est-ce que votre enfant utilise spontanément des gestes simples de communication, comme saluer de la main?",["Plusieurs fois par jour", "Quelques fois par jours", "Quelques fois par semaine", "Moins d’une fois par semaine", "Jamais"])
 
-chol = col1.number_input("Une question")
+chol = col1.number_input("Une question1")
 
-sys_bp = col2.number_input("Une question")
+sys_bp = col2.number_input("Une question2")
 
-dia_bp = col3.number_input("Une question")
+dia_bp = col3.number_input("Une question3")
 
-bmi = col1.number_input("Une question")
+bmi = col1.number_input("Une question4")
 
-heart_rate = col2.number_input("Une question")
+heart_rate = col2.number_input("Une question5")
 
-glucose = col3.number_input("Une question")
+glucose = col3.number_input("Une question6")
 
 df_pred = pd.DataFrame([[gender,age,education,isSmoker,yearsSmoking,BPMeds,stroke,hyp,diabetes,chol,sys_bp,dia_bp,bmi,heart_rate,glucose]],
 
