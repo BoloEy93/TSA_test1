@@ -64,8 +64,8 @@ def transform(data):
     return(result)
 df_pred['education'] = df_pred['education'].apply(transform)
 
-model = joblib.load('fhs_rf_model.pkl')
-prediction = model.predict(df_pred)
+#model = joblib.load('fhs_rf_model.pkl')
+#prediction = model.predict(df_pred)
 
 if st.button('Predict'):
     if(prediction[0]==0):
