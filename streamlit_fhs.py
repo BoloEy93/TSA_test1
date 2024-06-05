@@ -67,10 +67,10 @@ df_pred['education'] = df_pred['education'].apply(transform)
 #model = joblib.load('fhs_rf_model.pkl')
 #prediction = model.predict(df_pred)
 
-prediction = [0,1,0,1,0,1]
+prediction = [1,1,0,1,0,1]
 
 if st.button('Predict'):
     if(prediction[0]==0):
-        st.write('<p class="big-font">You are likely not a TSA patient.</p>',unsafe_allow_html=True)
+        st.write('<p class="big-font">Vous n'êtes probablement pas atteint d'Autisme.</p>',unsafe_allow_html=True)
     else:
-        st.write('<p class="big-font">You are likely a TSA patient.</p>',unsafe_allow_html=True)
+        st.write('<p class="big-font">Vous êtes probablement atteint d'Autisme.</p>',unsafe_allow_html=True)
