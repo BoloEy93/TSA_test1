@@ -55,11 +55,11 @@ df_pred['currentSmoker'] = df_pred['currentSmoker'].apply(lambda x: 1 if x == 'Y
 
 def transform(data):
     result = 3
-    if(data=='High school diploma'):
+    if(data=='Toujours'):
         result = 0
-    elif(data=='Undergraduate degree'):
+    elif(data=='Parfois'):
         result = 1
-    elif(data=='Postgraduate degree'):
+    elif(data=='Habituellement'):
         result = 2
     return(result)
 df_pred['education'] = df_pred['education'].apply(transform)
@@ -67,8 +67,10 @@ df_pred['education'] = df_pred['education'].apply(transform)
 #model = joblib.load('fhs_rf_model.pkl')
 #prediction = model.predict(df_pred)
 
+prediction = [0,1,0,1,0,1]
+
 if st.button('Predict'):
     if(prediction[0]==0):
-        st.write('<p class="big-font">You likely will not develop heart disease in 10 years.</p>',unsafe_allow_html=True)
+        st.write('<p class="big-font">You are likely not a TSA patient.</p>',unsafe_allow_html=True)
     else:
-        st.write('<p class="big-font">You are likely to develop heart disease in 10 years.</p>',unsafe_allow_html=True)
+        st.write('<p class="big-font">You are likely a TSA patient.</p>',unsafe_allow_html=True)
