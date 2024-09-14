@@ -1,6 +1,7 @@
 import streamlit as st
 import joblib
 import pandas as pd
+import random
 
 st.write("Dépistage TSA - Q-CHAT-10")
 
@@ -70,13 +71,13 @@ df_pred['q10'] = df_pred['q10'].apply(transform_response)
 # Gender transformation
 df_pred['gender'] = df_pred['gender'].apply(lambda x: 1 if x == 'Garçon' else 0)
 
-st.write("Réponses converties :")
-st.write(df_pred)
+#st.write("Réponses converties :")
+#st.write(df_pred)
 
-model = joblib.load('autism_rf_model.pkl', mmap_mode=None)
-prediction = model.predict(df_pred)
+#model = joblib.load('autism_rf_model.pkl', mmap_mode=None)
+#prediction = model.predict(df_pred)
 
-#prediction = [1,1,0,1,0,1]
+prediction = random.choice([0, 1])
 
 #if st.button('Predict'):
 #    if(prediction[0]==0):
