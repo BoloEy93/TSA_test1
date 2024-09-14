@@ -86,6 +86,7 @@ prediction = random.choice([0, 1])
 #        st.write('<p class="big-font">Vous etes probablement atteint d Autisme.</p>',unsafe_allow_html=True)
 
 # Display prediction result
+st.write("Prédiction : ")
 if prediction == 1:
     st.write("Le résultat indique un risque potentiel d'autisme. Veuillez consulter un spécialiste.")
 else:
