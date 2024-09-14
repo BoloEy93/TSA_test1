@@ -2,75 +2,91 @@ import streamlit as st
 import joblib
 import pandas as pd
 
-st.write("TSA Prediction")
+st.write("Dépistage TSA - Q-CHAT-10")
 
-gender = st.selectbox("Garcon ?", ["Oui", "Non"])
+# Gender input
+gender = st.selectbox("Sexe de l'enfant ?", ["Garçon", "Fille"])
+
 col1, col2, col3 = st.columns(3)
 
-# Getting user input
+# Q-CHAT-10 Questions
 
-age = col2.number_input("Votre age")
+q1 = col1.selectbox("1. Est-ce que votre enfant vous regarde lorsque vous l’appelez par son prénom?",
+                    ["Toujours", "Habituellement", "Parfois", "Rarement", "Jamais"])
 
-education = col3.selectbox("Est-ce que votre enfant vous regarde lorsque vous l’appelez?",["Toujours", "Habituellement", "Parfois", "Rarement", "Jamais"])
+q2 = col2.selectbox("2. Est-ce que c'est facile d’établir un contact visuel avec votre enfant?",
+                    ["Très facile", "Assez facile", "Parfois difficile", "Très difficile", "Impossible"])
 
-isSmoker = col1.selectbox("A quel point est-ce facile d’avoir un contact visuel avec votre enfant?",["Plusieurs fois par jour", "Quelques fois par jours", "Quelques fois par semaine", "Moins d’une fois par semaine", "Jamais"])
+q3 = col3.selectbox("3. Est-ce que votre enfant pointe du doigt pour demander quelque chose ou parce qu’il en a besoin?",
+                    ["Oui, souvent", "Oui, parfois", "Rarement", "Jamais"])
 
-yearsSmoking = col2.number_input("Nombre ")
+q4 = col1.selectbox("4. Est-ce que votre enfant joue à faire semblant, comme par exemple faire semblant de parler au téléphone ou faire semblant de nourrir une poupée?",
+                    ["Oui, souvent", "Oui, parfois", "Rarement", "Jamais"])
 
-BPMeds = col3.selectbox("Est-ce que votre enfant joue à faire semblant? (Comme jouer avec des poupées, parler dans un téléphone jouet?",["Plusieurs fois par jour", "Quelques fois par jours", "Quelques fois par semaine", "Moins d’une fois par semaine", "Jamais"])
+q5 = col2.selectbox("5. Est-ce que votre enfant regarde dans la même direction que vous lorsque vous regardez quelque chose?",
+                    ["Oui, souvent", "Oui, parfois", "Rarement", "Jamais"])
 
-stroke = col1.selectbox("Est-ce que votre enfant regarde dans la direction que vous regardez?",["Plusieurs fois par jour", "Quelques fois par jours", "Quelques fois par semaine", "Moins d’une fois par semaine", "Jamais"])
+q6 = col3.selectbox("6. Si vous êtes bouleversé ou triste, est-ce que votre enfant montre des signes de vouloir vous réconforter?",
+                    ["Oui, souvent", "Oui, parfois", "Rarement", "Jamais"])
 
-hyp = col2.selectbox("Si vous ou quelqu’un de votre famille est triste ou bouleversé, est-ce que votre enfant essaie de le réconforter??",["Plusieurs fois par jour", "Quelques fois par jours", "Quelques fois par semaine", "Moins d’une fois par semaine", "Jamais"])
+q7 = col1.selectbox("7. Est-ce que votre enfant utilise spontanément des gestes simples de communication, comme saluer de la main ou montrer du doigt?",
+                    ["Oui, souvent", "Oui, parfois", "Rarement", "Jamais"])
 
-diabetes = col3.selectbox("Est-ce que votre enfant utilise spontanément des gestes simples de communication, comme saluer de la main?",["Plusieurs fois par jour", "Quelques fois par jours", "Quelques fois par semaine", "Moins d’une fois par semaine", "Jamais"])
+q8 = col2.selectbox("8. Est-ce que les premiers mots de votre enfant étaient clairs et utilisés de façon appropriée?",
+                    ["Oui, très clair", "Plutôt clair", "Légèrement inhabituel", "Très inhabituel", "Mon enfant ne parle pas"])
 
-chol = col1.selectbox("Est-ce que les premiers mots de votre enfant étaient :",["Très typique", "Plutôt typique", "Légèrement inhabituel", "Très inhabituel", "Mon enfant ne parle pas"])
+q9 = col3.selectbox("9. Est-ce que votre enfant vous montre des objets juste pour partager son intérêt, pas parce qu'il en a besoin?",
+                    ["Oui, souvent", "Oui, parfois", "Rarement", "Jamais"])
 
-sys_bp = col2.number_input("Une question2")
+q10 = col1.selectbox("10. Est-ce que votre enfant montre une réaction inhabituelle à des bruits forts ou des objets en mouvement?",
+                     ["Oui, souvent", "Oui, parfois", "Rarement", "Jamais"])
 
-dia_bp = col3.number_input("Une question3")
+# Create a DataFrame to hold the answers
+df_pred = pd.DataFrame([[gender, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10]],
+                       columns=['gender', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10'])
 
-bmi = col1.number_input("Une question4")
+# Transforming categorical inputs into numerical values
+def transform_response(response):
+    mapping = {
+        "Toujours": 0, "Habituellement": 1, "Parfois": 2, "Rarement": 3, "Jamais": 4,
+        "Très facile": 0, "Assez facile": 1, "Parfois difficile": 2, "Très difficile": 3, "Impossible": 4,
+        "Oui, souvent": 0, "Oui, parfois": 1, "Rarement": 2, "Jamais": 3,
+        "Oui, très clair": 0, "Plutôt clair": 1, "Légèrement inhabituel": 2, "Très inhabituel": 3, "Mon enfant ne parle pas": 4
+    }
+    return mapping.get(response, 3)
 
-heart_rate = col2.number_input("Une question5")
+# Apply transformations
+df_pred['q1'] = df_pred['q1'].apply(transform_response)
+df_pred['q2'] = df_pred['q2'].apply(transform_response)
+df_pred['q3'] = df_pred['q3'].apply(transform_response)
+df_pred['q4'] = df_pred['q4'].apply(transform_response)
+df_pred['q5'] = df_pred['q5'].apply(transform_response)
+df_pred['q6'] = df_pred['q6'].apply(transform_response)
+df_pred['q7'] = df_pred['q7'].apply(transform_response)
+df_pred['q8'] = df_pred['q8'].apply(transform_response)
+df_pred['q9'] = df_pred['q9'].apply(transform_response)
+df_pred['q10'] = df_pred['q10'].apply(transform_response)
 
-glucose = col3.number_input("Une question6")
+# Gender transformation
+df_pred['gender'] = df_pred['gender'].apply(lambda x: 1 if x == 'Garçon' else 0)
 
-df_pred = pd.DataFrame([[gender,age,education,isSmoker,yearsSmoking,BPMeds,stroke,hyp,diabetes,chol,sys_bp,dia_bp,bmi,heart_rate,glucose]],
+st.write("Réponses converties :")
+st.write(df_pred)
 
-columns= ['male','age','education','currentSmoker','cigsPerDay','BPMeds','prevalentStroke','prevalentHyp','diabetes','totChol','sysBP','diaBP','BMI','heartRate','glucose'])
+model = joblib.load('autism_rf_model.pkl')
+prediction = model.predict(df_pred)
 
-df_pred['male'] = df_pred['male'].apply(lambda x: 1 if x == 'Yes' else 0)
+#prediction = [1,1,0,1,0,1]
 
-df_pred['prevalentHyp'] = df_pred['prevalentHyp'].apply(lambda x: 1 if x == 'Yes' else 0)
+#if st.button('Predict'):
+#    if(prediction[0]==0):
+#        st.write('<p class="big-font">Vous n etes probablement pas atteint d Autisme.</p>',unsafe_allow_html=True)
+#    else:
+#        st.write('<p class="big-font">Vous etes probablement atteint d Autisme.</p>',unsafe_allow_html=True)
 
-df_pred['prevalentStroke'] = df_pred['prevalentStroke'].apply(lambda x: 1 if x == 'Yes' else 0)
+# Display prediction result
+if prediction == 1:
+    st.write("Le résultat indique un risque potentiel d'autisme. Veuillez consulter un spécialiste.")
+else:
+    st.write("Le résultat ne montre pas de signes clairs de risque d'autisme.")
 
-df_pred['diabetes'] = df_pred['diabetes'].apply(lambda x: 1 if x == 'Yes' else 0)
-
-df_pred['BPMeds'] = df_pred['BPMeds'].apply(lambda x: 1 if x == 'Yes' else 0)
-
-df_pred['currentSmoker'] = df_pred['currentSmoker'].apply(lambda x: 1 if x == 'Yes' else 0)
-
-def transform(data):
-    result = 3
-    if(data=='Toujours'):
-        result = 0
-    elif(data=='Parfois'):
-        result = 1
-    elif(data=='Habituellement'):
-        result = 2
-    return(result)
-df_pred['education'] = df_pred['education'].apply(transform)
-
-#model = joblib.load('fhs_rf_model.pkl')
-#prediction = model.predict(df_pred)
-
-prediction = [1,1,0,1,0,1]
-
-if st.button('Predict'):
-    if(prediction[0]==0):
-        st.write('<p class="big-font">Vous n etes probablement pas atteint d Autisme.</p>',unsafe_allow_html=True)
-    else:
-        st.write('<p class="big-font">Vous etes probablement atteint d Autisme.</p>',unsafe_allow_html=True)
