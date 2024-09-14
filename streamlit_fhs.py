@@ -27,15 +27,15 @@ diabetes = col3.selectbox("Est-ce que votre enfant utilise spontanément des ges
 
 chol = col1.selectbox("Est-ce que les premiers mots de votre enfant étaient :",["Très typique", "Plutôt typique", "Légèrement inhabituel", "Très inhabituel", "Mon enfant ne parle pas"])
 
-sys_bp = col2.number_input("Une question2")
+#sys_bp = col2.number_input("Une question2")
 
-dia_bp = col3.number_input("Une question3")
+#dia_bp = col3.number_input("Une question3")
 
-bmi = col1.number_input("Une question4")
+#bmi = col1.number_input("Une question4")
 
-heart_rate = col2.number_input("Une question5")
+#heart_rate = col2.number_input("Une question5")
 
-glucose = col3.number_input("Une question6")
+#glucose = col3.number_input("Une question6")
 
 df_pred = pd.DataFrame([[gender,age,education,isSmoker,yearsSmoking,BPMeds,stroke,hyp,diabetes,chol,sys_bp,dia_bp,bmi,heart_rate,glucose]],
 
